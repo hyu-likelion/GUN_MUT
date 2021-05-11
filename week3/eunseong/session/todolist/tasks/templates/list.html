@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div style="margin: 5%;">
+        <h2>todo list</h2>
+        <div>
+            <form method="POST">
+                {%csrf_token%}
+                <div class="input-group mb-3">
+                    {{ form.title }}
+                    <button type='submit' name="create" class="btn btn-success">등록</button>
+                </div>
+            </form>
+        </div>
+        <div style="margin-top: 3%;">
+            <ul>
+                {% for task in tasks %}
+                    <li style="padding-top: 1%;">
+                        <div>
+                            {{ task }}
+                            <a href="{% url 'edit' task.id %}" class="btn btn-outline-primary btn-sm">EDIT</a>
+                            <a href="{% url 'delete' task.id %}" class="btn btn-outline-danger btn-sm">DELETE</a>
+                     
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </div>
+    
+
+</body>
+
+</html>
